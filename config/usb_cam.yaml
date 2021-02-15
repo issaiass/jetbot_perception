@@ -1,0 +1,6 @@
+video_device: /dev/video0
+image_width: 320
+image_height: 240
+pixel_format: mjpeg
+camera_frame_id: usb_cam
+io_method: mmap

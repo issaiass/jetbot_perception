@@ -1,0 +1,44 @@
+#opencv:
+#  enable_floating_window: if we popup a floating window or not
+#  image_width: widht of the displayed popup window
+#  image_height: height of the displayed popup window
+#  window_name: the name of the window
+#topics:
+#  pub_topic: topic that contains processed image (detected objects)
+#  pub_topic_info: information topic that contains classes, bounding boxes, scores
+#  sub_topic: topic of the input source image to subscribe
+#neuralnet: 
+#  image_width: 300
+#  image_height: 300
+#  scale_factor: the factor to scale the image, in some cases these parameter is about 0.2 to 0.96 or 1.0/127.5, test your case
+#  confidenceThreshold: filter predictions below a threshold (discarded if below this threshold)
+#  meanValR, meanValG, meanValB: mean value list of the red, green and blue values 
+#  configfile: configuration file for TF neural network, typically a *.pbtxt
+#  modelfile: model file in TF format, typically a *.pb 
+#  classfile: file containing the name of the detected classes, typically a *.txt
+# you could find the pbtxt in the TF model zoo or in https://github.com/opencv/opencv/wiki/TensorFlow-Object-Detection-API
+# Model here: http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+
+opencv:
+  enable_floating_window: true
+  image_width: 480
+  image_height: 360
+  window_name: "OPENCV WINDOW"
+  wait_key: 1
+
+topics:
+  pub_topic: /detected_objects
+  pub_topic_info: /detected_objects_info
+  sub_topic: /usb_cam/image_raw
+
+neuralnet: 
+  image_width: 300
+  image_height: 300
+  scale_factor: 0.2
+  confidenceThreshold: 0.7
+  meanValR: 127.5
+  meanValG: 127.5
+  meanValB: 127.5
+  configfile: /home/robot/jetbot_perception_ws/src/jetbot_perception/models/ssd_mobilenet_v2_coco_2018_03_29/ssd_mobilenet_v2_coco_2018_03_29.pbtxt
+  modelfile: /home/robot/jetbot_perception_ws/src/jetbot_perception/models/ssd_mobilenet_v2_coco_2018_03_29/frozen_inference_graph.pb
+  classfile: /home/robot/jetbot_perception_ws/src/jetbot_perception/models/ssd_mobilenet_v2_coco_2018_03_29/coco_class_labels.txt

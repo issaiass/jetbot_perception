@@ -1,0 +1,15 @@
+<launch>
+  <!-- USB Cam Node -->
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <rosparam file="$(find jetbot_perception)/config/usb_cam.yaml" command="load" />
+  </node>
+
+  <!-- OpenCV Object Detection Node -->
+  <node name="jetbot_opencv" pkg="jetbot_perception" type="perception_detection" > 
+    <rosparam file="$(find jetbot_perception)/config/ssd_mobilenet.yaml" command="load" />
+    <!-- Do remapping if needed -->
+    <!--remap from="/usb_cam/image_raw" to="/jetbot_camera/image_raw"/-->
+    <!--remap from="/detected_objects" to="/jetbot_objects/"/-->
+    <!--remap from="/detected_objects_info" to="/jetbot_objects_info"/-->    
+  </node>
+</launch>
